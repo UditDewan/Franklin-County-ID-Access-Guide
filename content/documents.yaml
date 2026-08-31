@@ -1,0 +1,138 @@
+# What the BMV accepts as proof, in plain words.
+# proves: which of the five BMV elements the paper covers.
+#   name, birth_date, legal_presence, ssn, address
+
+documents:
+
+  - id: birth-certificate
+    name: Certified copy of a birth certificate
+    plain_name: An official copy of your birth record with a raised seal or stamp
+    proves: [name, birth_date, legal_presence]
+    plain_note: >
+      A photocopy will not work. It has to be the kind an office prints for you.
+    provenance: &bmv2430
+      source_url: https://dam.assets.ohio.gov/image/upload/publicsafety.ohio.gov/bmv2430.pdf
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: BMV form 2430, revision 5/25. Read in full. Confirm at two offices.
+
+  - id: photo-id-any
+    name: Any photo ID, even an expired one
+    plain_name: Any card with your photo on it, even an old one
+    proves: []
+    plain_note: >
+      An expired licence, a work badge, or a school card can all help.
+      It may not be enough on its own. Call the office and ask.
+    provenance: *bmv2430
+
+  - id: social-security-card
+    name: Social Security card
+    plain_name: Your paper Social Security card
+    proves: [ssn]
+    plain_note: >
+      A metal copy does not count. Your number alone is not enough.
+      They want to see the card or one of the papers below.
+    provenance: *bmv2430
+
+  - id: w2-1099-paystub
+    name: W-2, 1099, or pay stub showing your full Social Security number
+    plain_name: A tax form or pay stub with your whole number on it
+    proves: [ssn, address]
+    plain_note: >
+      It cannot be handwritten. A pay stub also counts as proof of address
+      if it is less than a year old.
+    provenance: *bmv2430
+
+  - id: ssa-document
+    name: A letter or statement from Social Security
+    plain_name: Any official Social Security letter with your name and address
+    proves: [address]
+    plain_note: >
+      Ask Social Security to mail one to where you stay now.
+      This is one of the easiest address papers to get.
+    provenance: *bmv2430
+
+  - id: public-assistance-statement
+    name: Public assistance benefits statement
+    plain_name: A benefits letter from a government office
+    proves: [address]
+    plain_note: >
+      Food or medical benefit letters count. It must be less than a year old.
+    provenance: *bmv2430
+
+  - id: jfs-child-support
+    name: Child support statement from Job and Family Services
+    plain_name: A child support letter from Job and Family Services
+    proves: [address]
+    plain_note: Only helps if you already have a case.
+    provenance: *bmv2430
+
+  - id: bmv-mail
+    name: BMV postcard or letter
+    plain_name: Mail the BMV itself sent you
+    proves: [address]
+    plain_note: >
+      Once the BMV has mailed you anything, that letter counts next time.
+    provenance: *bmv2430
+
+  - id: court-supervision-order
+    name: Court order of probation, parole, or release
+    plain_name: Your probation, parole, or release paperwork
+    proves: [address]
+    plain_note: Ask your officer for a copy with your current address on it.
+    provenance: *bmv2430
+
+  - id: bank-statement
+    name: Bank or credit union statement
+    plain_name: A bank statement from the last year
+    proves: [address]
+    plain_note: A printed online statement is fine.
+    provenance: *bmv2430
+
+  - id: utility-bill
+    name: Utility bill
+    plain_name: A gas, water, power, or phone bill from the last year
+    proves: [address]
+    plain_note: >
+      Two bills from two different companies can cover both address papers.
+    provenance: *bmv2430
+
+  - id: school-record
+    name: School record or transcript
+    plain_name: Your school records
+    proves: [address]
+    plain_note: The original or a copy the school stamps for you.
+    provenance: *bmv2430
+
+  - id: insurance-policy
+    name: Renter, home, life, or car insurance card or policy
+    plain_name: A current insurance card or policy
+    proves: [address]
+    plain_note: It has to be current, not expired.
+    provenance: *bmv2430
+
+  - id: name-change-papers
+    name: Marriage licence, divorce decree, or court name change order
+    plain_name: Papers that show your name changed
+    proves: [name]
+    plain_note: >
+      You need these when your birth record shows a different name.
+      If your name changed more than once, bring the papers for each change.
+    provenance: *bmv2430
+
+# Things people expect to work, and do not. Read this list before you plan a trip.
+not_accepted:
+  - id: shelter-letter
+    name: A letter from a shelter on shelter letterhead
+    plain_note: >
+      A shelter letter is not on the BMV list. Staff at one office may still take
+      it. Do not count on it. Get one of the mailed papers above instead.
+    provenance: *bmv2430
+
+  - id: notarised-statement
+    name: A signed statement from a friend you stay with
+    plain_note: >
+      The BMV form for this only covers a parent, a husband or wife, or a nursing
+      home. A friend or a shelter cannot sign it for you.
+    provenance: *bmv2430

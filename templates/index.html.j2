@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting an ID in Franklin County</title>
+<meta name="description" content="A step by step guide to getting an Ohio ID card or a birth certificate when you have no fixed address in Franklin County.">
+<meta name="robots" content="index, follow">
+<style>{{ css }}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the questions</a>
+<div class="wrap">
+
+<header>
+  <h1>Getting an ID in Franklin County</h1>
+  <p class="lede">Answer {{ questions|length }} questions. You get a list of what to bring, where to go, and what to say.</p>
+
+  {% if draft %}
+  <div class="banner" role="note">
+    <strong>Draft. Do not hand this out yet.</strong>
+    Some facts on this page came from agency websites and have not been confirmed
+    by phone. {{ unconfirmed }} of {{ fact_count }} facts still need a call.
+    Call every office before you travel.
+  </div>
+  {% endif %}
+
+  <p class="privacy">
+    This page saves nothing. No cookies, no accounts, nobody is told you were here.
+    Your answers stay in this browser tab only. Closing or reloading the page
+    clears them. Nothing you tap is sent anywhere.
+  </p>
+</header>
+
+<main id="main">
+
+  <!-- No aria-live here on purpose. Focus is moved to the new question and to
+       the results heading, and a live region on top of that makes screen
+       readers read everything twice. -->
+  <div id="tool" hidden>
+    <div id="quiz"></div>
+    <div id="results"></div>
+  </div>
+
+  <div id="fallback">
+    <h2>Every step, on one page</h2>
+    <p>
+      The questions need JavaScript. It is off or blocked, so here is the whole
+      guide instead. Read the steps that apply to you and skip the rest.
+    </p>
+    <p>
+      One word comes up over and over. A <b>certified copy</b> is a copy an
+      office prints and stamps for you. A photocopy is not a certified copy,
+      and the BMV will not take one.
+    </p>
+  </div>
+
+  <div id="all-steps">
+    {% for step in steps %}
+    <section class="step" id="step-{{ step.id }}">
+      <h2>{{ step.title }}</h2>
+      <p>{{ step.plain_summary }}</p>
+
+      {% if step.what_to_say %}
+      <div class="say">
+        <span>What to say when you get there</span>
+        &ldquo;{{ step.what_to_say }}&rdquo;
+      </div>
+      {% endif %}
+
+      <p class="meta"><b>How long:</b> {{ step.time_estimate }}</p>
+
+      {% if step.cost %}
+      <p class="meta">
+        <b>Cost:</b>
+        {% if step.cost.amount_usd and step.cost.amount_usd > 0 %}
+          about ${{ '%.2f'|format(step.cost.amount_usd) }}
+        {% else %}
+          no fee
+        {% endif %}
+        &mdash; {{ step.cost.notes }}
+      </p>
+      {% endif %}
+
+      {% if step.bring %}
+      <h3>Bring</h3>
+      <ul>
+        {% for item in step.bring %}
+        <li>
+          <b>{{ item.show_as or item.document.plain_name }}</b>
+          {% if item.required %}(needed){% else %}(helps, not always needed){% endif %}
+          {% if item.note %}<br>{{ item.note }}{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if step.steps_detail %}
+      <h3>What to do</h3>
+      <ol>
+        {% for line in step.steps_detail %}<li>{{ line }}</li>{% endfor %}
+      </ol>
+      {% endif %}
+
+      {% if step.places %}
+      <h3>Where to go</h3>
+      {% for place in step.places %}
+      <div class="place">
+        <p class="name">{{ place.name }}</p>
+        <p>{{ place.what_they_do }}</p>
+        <p>{{ place.address }}</p>
+        <p>Phone: <a href="tel:{{ place.phone|replace('-','') }}">{{ place.phone }}</a></p>
+        <p>Hours: {{ place.hours }}</p>
+        {% if place.notes %}<p>{{ place.notes }}</p>{% endif %}
+        <p><a href="{{ place.provenance.source_url }}">Their own page</a></p>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      {% if step.id == 'birth-cert-other-state' %}
+      <h3>Where to start for other states</h3>
+      <p>{{ states.directory.plain_note }}</p>
+      <ul>
+        {% for state in states.states %}
+        <li><a href="{{ state.url }}">{{ state.name }}</a></li>
+        {% endfor %}
+        <li><a href="{{ states.directory.url }}">Every other state</a></li>
+      </ul>
+      {% endif %}
+
+      {% if step.id == 'address-proof' %}
+      <h3>Papers the BMV takes for your address</h3>
+      <ul>
+        {% for doc in address_documents %}
+        <li><b>{{ doc.plain_name }}.</b> {{ doc.plain_note }}</li>
+        {% endfor %}
+      </ul>
+      <div class="warn-not-accepted">
+        <h3>Papers people expect to work, and do not</h3>
+        <ul>
+          {% for item in not_accepted %}
+          <li><b>{{ item.name }}.</b> {{ item.plain_note }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <p class="checked{% if step.provenance.stale %} stale{% endif %}">
+        {% if step.provenance.stale %}Out of date. {% endif %}
+        Checked {{ step.provenance.verified_on }} by {{ step.provenance.verified_by }}.
+        Confidence: {{ step.provenance.confidence }}.
+        <a href="{{ step.provenance.source_url }}">Source</a>
+      </p>
+    </section>
+    {% endfor %}
+  </div>
+
+  <details>
+    <summary>What the words mean</summary>
+    <ul>
+      {% for doc in documents %}
+      <li><b>{{ doc.name }}.</b> {{ doc.plain_name }}. {{ doc.plain_note }}</li>
+      {% endfor %}
+    </ul>
+  </details>
+
+  <details>
+    <summary>If you get turned away</summary>
+    <p>
+      It happens, and it is not always your fault. Offices do not all read the
+      rules the same way. Ask which paper was missing. Write down the date, the
+      office, and the name of the person you spoke to.
+    </p>
+    <p>
+      Then try another office. If you have that note, a case manager can help
+      you fight it. Those notes are also what fixes the rules later.
+    </p>
+  </details>
+
+</main>
+
+<footer>
+  <p>
+    Built by volunteers. It is not legal advice. It only describes what
+    offices say they require. Fees and hours change with no warning, so call
+    ahead every time.
+  </p>
+  <p>Facts on this page were last checked {{ newest_check }}. Oldest fact: {{ oldest_check }}.</p>
+  <p><a href="print.html">A one page version to print and hand out</a></p>
+  <p>Built {{ build_date }}.</p>
+</footer>
+
+</div>
+<script type="application/json" id="tree-data">{{ tree_json }}</script>
+<script>{{ plan_js }}
+{{ js }}</script>
+</body>
+</html>

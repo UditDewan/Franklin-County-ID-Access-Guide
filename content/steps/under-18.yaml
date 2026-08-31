@@ -1,0 +1,26 @@
+id: under-18
+title: If you are under 18
+plain_summary: >
+  The rules are not the same for people under 18.
+  A parent or guardian usually has to sign, and that is not always possible.
+  Talk to someone who does this work every day.
+time_estimate: Start with one phone call today.
+bring: []
+what_to_say: >
+  I am under 18 and I need help getting an ID.
+where:
+  - star-house
+  - homeless-hotline
+steps_detail:
+  - Call Star House. They work with people age 14 to 24 every day.
+  - Tell them your situation plainly. They have heard it before.
+next_steps: []
+referral: true
+provenance:
+  source_url: https://www.starhouse.us/
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    Phase 0 must map the under-18 rules properly. Until then this page only
+    routes to people who already know them.

@@ -1,0 +1,132 @@
+# Offices a person may have to visit. One entry per place.
+# Every entry needs provenance. The build refuses to run without it.
+#
+# confidence:
+#   desk    - taken from the agency's own website or form. Not yet confirmed by a person.
+#   phone   - one staff member confirmed it by phone.
+#   confirmed - two independent contacts agree. Only these may be published.
+
+agencies:
+
+  - id: columbus-public-health-vitals
+    name: Columbus Public Health, Office of Vital Statistics
+    what_they_do: >
+      Prints certified copies of Ohio birth certificates while you wait.
+      Any Ohio birth from 1908 on, not just births in Columbus.
+    address: 240 Parsons Ave, Columbus, OH 43215
+    phone: 614-645-7331
+    hours: Monday to Friday, 8:00am to 4:15pm. Wednesday opens at 9:00am.
+    notes: >
+      Pay by check or money order made out to Columbus City Treasurer.
+      Call first and ask if they take cash that day.
+    provenance:
+      source_url: https://www.columbus.gov/Services/Public-Health/Get-a-Birth-or-Death-Certificate
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: >
+        Site blocks automated checks. A person must open this page and call the
+        office before this entry is published.
+
+  - id: odh-vital-statistics
+    name: Ohio Department of Health, Bureau of Vital Statistics
+    what_they_do: >
+      The state office that keeps every Ohio birth record.
+      You can order by mail, online, or in person.
+    address: 4200 Surface Rd, Columbus, OH 43228
+    phone: 614-466-2531
+    hours: Open to walk-ins Monday to Friday, 10:00am to 2:00pm.
+    notes: >
+      Mail and online orders take days or weeks. Walking in is faster.
+      Ask what they charge that day. The price is not the same everywhere.
+    provenance:
+      source_url: https://odh.ohio.gov/know-our-programs/vital-statistics/How-to-Order-Certificates/VS-How-to-Order-Certificates
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: >
+        The state site blocks automated checks, so the link checker cannot see it.
+        Open it by hand and call the office.
+
+  - id: bmv-deputy-registrar
+    name: Ohio BMV deputy registrar (any location)
+    what_they_do: >
+      Takes your ID application. There are many offices in Franklin County.
+      Find the closest one before you travel, and call to check the hours.
+    address: Many offices. Find the nearest at publicsafety.ohio.gov/local-office
+    phone: 844-644-6268
+    hours: Each office sets its own hours. Call the one you plan to visit.
+    notes: >
+      Offices do not all work the same way. If one turns you away, ask why,
+      write down what they said, and try another office.
+    provenance:
+      source_url: https://publicsafety.ohio.gov/local-office
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: >
+        We do not list single BMV offices on purpose. One office found in a
+        search had already closed. The locator is safer than a stale address.
+
+  - id: ssa-columbus
+    name: Social Security Administration, Columbus office
+    what_they_do: >
+      Replaces a lost Social Security card. There is no fee for a new card.
+    address: Call 800-772-1213 for the nearest office.
+    phone: 800-772-1213
+    hours: Call first. Most offices ask you to book a time.
+    notes: >
+      A card is free. You still have to prove who you are to get one.
+    provenance:
+      source_url: https://www.ssa.gov/number-card/replace-card
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: Site blocks automated checks. Confirm the local office process by phone.
+
+  - id: homeless-hotline
+    name: Homeless Hotline, run by Community Shelter Board
+    what_they_do: >
+      One phone call to find a shelter bed in Franklin County. Open all day and night.
+    address: Phone only.
+    phone: 614-274-7000
+    hours: 24 hours a day, every day.
+    notes: >
+      In Franklin County you go through the hotline to reach a shelter.
+      A shelter bed also gives you a place where mail can arrive.
+    provenance:
+      source_url: https://www.csb.org/
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+
+  - id: faith-mission
+    name: LSS Faith Mission
+    what_they_do: >
+      Shelter and day services downtown. Case managers help people get documents.
+    address: 245 N Grant Ave, Columbus, OH 43215
+    phone: 614-224-6617
+    hours: Call to confirm today's hours.
+    notes: >
+      Ask for a case manager and say you are working on getting an ID.
+    provenance:
+      source_url: https://www.lssnetworkofhope.org/faithmission/
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+
+  - id: star-house
+    name: Star House
+    what_they_do: >
+      Drop-in center for people age 14 to 24 with no safe place to stay.
+      Staff help with ID cards, records, and benefits.
+    address: 1220 Corrugated Way, Columbus, OH 43201
+    phone: 614-826-5868
+    hours: Open 24 hours a day.
+    notes: >
+      If you are under 25, start here. They do this work every day.
+    provenance:
+      source_url: https://www.starhouse.us/
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk

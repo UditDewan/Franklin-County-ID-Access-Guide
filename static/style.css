@@ -1,0 +1,179 @@
+/* Inlined into the page at build time. One request, no web fonts. */
+
+:root {
+  --ink: #14181d;
+  --quiet: #4a5560;
+  --line: #c9d1d9;   /* hairlines and dividers, decorative */
+  --edge: #79828d;   /* anything you can click: 3.9:1 on white, WCAG 1.4.11 */
+  --paper: #ffffff;
+  --shade: #f2f4f7;
+  --link: #0b4f8a;
+  --flag: #8a4b00;
+  --flag-bg: #fff4e2;
+  --stop: #8a1c1c;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0 1rem 4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 18px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.wrap { max-width: 34rem; margin: 0 auto; }
+
+h1 { font-size: 1.7rem; line-height: 1.2; margin: 1.2rem 0 .4rem; }
+h2 { font-size: 1.3rem; line-height: 1.25; margin: 2rem 0 .5rem; }
+h3 { font-size: 1.05rem; margin: 1.2rem 0 .3rem; }
+p, li { margin: .55rem 0; }
+ul, ol { padding-left: 1.3rem; }
+
+a { color: var(--link); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  position: static;
+  display: inline-block;
+  padding: .5rem;
+  background: var(--shade);
+}
+
+.lede { font-size: 1.05rem; color: var(--quiet); }
+
+.banner {
+  border: 2px solid var(--flag);
+  background: var(--flag-bg);
+  color: var(--flag);
+  padding: .7rem .8rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  font-size: .95rem;
+}
+.banner strong { display: block; font-size: 1rem; }
+
+.privacy {
+  border-left: 4px solid var(--line);
+  padding: .1rem 0 .1rem .8rem;
+  margin: 1.2rem 0;
+  color: var(--quiet);
+  font-size: .95rem;
+}
+
+/* Questions */
+
+#tool[hidden] { display: none; }
+
+fieldset { border: 0; margin: 0; padding: 0; }
+legend { font-size: 1.35rem; font-weight: 600; line-height: 1.25; padding: 0; }
+
+.progress { color: var(--quiet); font-size: .9rem; margin: 1.5rem 0 .3rem; }
+
+.help { color: var(--quiet); font-size: .95rem; margin: .3rem 0 .8rem; }
+
+.choices { display: flex; flex-direction: column; gap: .6rem; margin: 1rem 0; }
+
+.choice {
+  display: block;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: .85rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--edge);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.choice:hover { border-color: var(--link); background: var(--shade); }
+
+.back {
+  font: inherit;
+  color: var(--link);
+  background: none;
+  border: 0;
+  padding: .6rem .2rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Steps */
+
+.step {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .1rem 1rem 1rem;
+  margin: 1.2rem 0;
+}
+.step h2 { margin-top: 1rem; }
+
+.say {
+  background: var(--shade);
+  border-left: 4px solid var(--link);
+  padding: .6rem .8rem;
+  margin: .8rem 0;
+}
+.say span { display: block; font-size: .85rem; color: var(--quiet); }
+
+.meta { font-size: .95rem; color: var(--quiet); margin: .4rem 0; }
+.meta b { color: var(--ink); }
+
+.place {
+  border-top: 1px solid var(--line);
+  padding-top: .6rem;
+  margin-top: .8rem;
+}
+.place .name { font-weight: 600; }
+.place p { margin: .2rem 0; }
+
+.stale {
+  color: var(--flag);
+  background: var(--flag-bg);
+  padding: .4rem .6rem;
+  border-radius: 4px;
+  font-size: .9rem;
+}
+
+.warn-not-accepted { border-left: 4px solid var(--stop); padding-left: .8rem; }
+
+.checked {
+  font-size: .8rem;
+  color: var(--quiet);
+  border-top: 1px dotted var(--line);
+  margin-top: .9rem;
+  padding-top: .4rem;
+}
+
+footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  font-size: .9rem;
+  color: var(--quiet);
+}
+
+details { margin: 1rem 0; }
+summary { cursor: pointer; padding: .5rem 0; font-weight: 600; }
+
+@media print {
+  body { font-size: 11pt; padding: 0; }
+  .noprint, .banner, form, .back { display: none; }
+  /* Closed sections would otherwise print as a heading with nothing under it. */
+  details { display: block; }
+  details > summary { display: block; font-weight: 600; }
+  details > *:not(summary) { display: block; content-visibility: visible; }
+  .step { break-inside: avoid; border: 0; padding: 0; }
+  a { color: #000; text-decoration: none; }
+}

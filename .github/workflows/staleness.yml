@@ -1,0 +1,81 @@
+name: staleness
+
+# The reminder mechanism for the whole project. Once a week it works out which
+# facts need another phone call and opens an issue listing them, with the numbers
+# to dial. If this stops running, the guide quietly rots.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Are any source links dead?
+        continue-on-error: true
+        run: python -m src.validate --check-links
+
+      - name: Work out what needs a call
+        id: calls
+        run: |
+          python -m src.reverify --older-than 90 > calls.txt
+          cat calls.txt
+          if grep -q "Nothing to do" calls.txt; then
+            echo "needed=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open an issue with the call list
+        if: steps.calls.outputs.needed == 'yes'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('calls.txt', 'utf8');
+            const title = `Facts needing a phone call, week of ${new Date().toISOString().slice(0, 10)}`;
+
+            // Reuse the open issue rather than stacking a new one every Monday.
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'reverify',
+            });
+
+            if (open.data.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open.data[0].number,
+                body: `Still outstanding as of ${new Date().toISOString().slice(0, 10)}:\n\n\`\`\`\n${body}\n\`\`\``,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                labels: ['reverify'],
+                body:
+                  'Worked from `python -m src.reverify`. Log every call in ' +
+                  '`research/verification-log.md`, then raise the confidence in the YAML.\n\n' +
+                  '```\n' + body + '\n```',
+              });
+            }
+
+      - name: Does it still build?
+        run: python -m src.build

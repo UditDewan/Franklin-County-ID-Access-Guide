@@ -1,0 +1,27 @@
+id: birth-cert-other-state
+title: Get a birth certificate from another state
+plain_summary: >
+  Ohio offices cannot print a record from another state.
+  You have to deal with the state where you were born.
+  This takes longer, and it is worth asking for help.
+time_estimate: Two to eight weeks. Sometimes more.
+bring: []
+what_to_say: >
+  I was born in your state and I need a certified copy of my birth record.
+where:
+  - faith-mission
+steps_detail:
+  - Find your birth state in the list on this page.
+  - Call that state office and ask what they need from you.
+  - Ask what they take when you have no photo ID.
+  - Ask a case manager to help. This step turns people back on their own.
+next_steps: [state-id]
+referral: true
+provenance:
+  source_url: https://www.cdc.gov/nchs/w2w/index.htm
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    The five states in states.yaml are a guess until shelters give us real
+    intake numbers. Replace that list with real data during Phase 0.

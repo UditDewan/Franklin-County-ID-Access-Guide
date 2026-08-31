@@ -1,0 +1,24 @@
+id: mailing-address
+title: Find a place where mail can reach you
+plain_summary: >
+  The ID office wants two papers with a street address on them.
+  So the first job is a place where mail can arrive.
+  A shelter bed, a friend's place, or a day center can all work.
+time_estimate: One phone call. A bed may take longer.
+bring: []
+what_to_say: >
+  I need a place where my mail can come. Can I use this address?
+where:
+  - homeless-hotline
+  - faith-mission
+steps_detail:
+  - Call the Homeless Hotline at 614-274-7000 and ask about a bed.
+  - Ask the shelter if you can have mail sent there. Ask who holds it.
+  - If you stay with a friend, ask if mail can come to their address.
+  - Write the address down the same way every time you use it.
+next_steps: [address-proof]
+provenance:
+  source_url: https://www.csb.org/
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk

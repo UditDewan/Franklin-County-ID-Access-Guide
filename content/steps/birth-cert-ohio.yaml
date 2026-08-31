@@ -1,0 +1,39 @@
+id: birth-cert-ohio
+title: Get a copy of your Ohio birth certificate
+plain_summary: >
+  If you were born in Ohio, you do not have to go back to the county
+  where you were born. Most health offices in the state can print one
+  for you the same day. Call first and ask what they charge.
+time_estimate: Same day if you walk in. Bring the fee with you.
+bring:
+  - id: photo-id-any
+    required: false
+    note: Bring any you have. Call first and ask what they will take.
+what_to_say: >
+  I was born in Ohio. I need a certified copy of my birth record.
+where:
+  - columbus-public-health-vitals
+  - odh-vital-statistics
+cost:
+  amount_usd: 25.00
+  notes: >
+    The price is not the same at every office. Call before you travel.
+    Bring a money order if you can. Not every office takes cash.
+  provenance:
+    source_url: https://www.columbus.gov/Services/Public-Health/Get-a-Birth-or-Death-Certificate
+    verified_on: 2026-08-30
+    verified_by: desk check, project team
+    confidence: desk
+steps_detail:
+  - Call the office first. Ask the price and what ID they need.
+  - Bring the exact payment. Ask what kind of payment they take.
+  - Ask for a certified copy. A plain photocopy will not work at the BMV.
+next_steps: [state-id]
+provenance:
+  source_url: https://www.columbus.gov/Services/Public-Health/Get-a-Birth-or-Death-Certificate
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    Open question for the phone calls: what does each office accept when the
+    person has no photo ID at all? That answer is the point of this guide.

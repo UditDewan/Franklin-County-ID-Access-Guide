@@ -1,0 +1,86 @@
+# The whole decision tree. Seven questions, then an ordered plan.
+#
+# A step joins the plan when every clause in its `when` block matches.
+# A step with no `when` block is always in the plan.
+# `stop_after` means the plan ends there, whatever else would follow.
+# The order of `plan` is the order the steps are shown in.
+
+questions:
+
+  - id: under18
+    text: Are you under 18?
+    options:
+      - {value: 'yes', label: 'Yes'}
+      - {value: 'no', label: 'No, I am 18 or older'}
+
+  - id: photo_id
+    text: Do you have any photo ID right now, even an expired one?
+    options:
+      - {value: 'yes', label: 'Yes'}
+      - {value: 'no', label: 'No, none at all'}
+
+  - id: born_ohio
+    text: Were you born in Ohio?
+    options:
+      - {value: 'yes', label: 'Yes'}
+      - {value: 'no', label: 'No, another state'}
+      - {value: unsure, label: 'I am not sure'}
+
+  - id: have_birth_cert
+    text: Do you have a certified copy of your birth certificate?
+    help: A certified copy is one an office printed for you. It has a seal or a stamp.
+    options:
+      - {value: 'yes', label: 'Yes'}
+      - {value: 'no', label: 'No, or only a photocopy'}
+
+  - id: ssn
+    text: Do you have your Social Security card?
+    options:
+      - {value: 'yes', label: 'Yes, I have the card'}
+      - {value: number_only, label: 'I know my number but have no card'}
+      - {value: 'no', label: 'No, and I do not know the number'}
+
+  - id: mail
+    text: Is there an address where mail can reach you?
+    help: A shelter, a friend, or a place that holds mail for you all count.
+    options:
+      - {value: 'yes', label: 'Yes'}
+      - {value: 'no', label: 'No, not right now'}
+
+  - id: name_changed
+    text: Has your name changed since you were born?
+    options:
+      - {value: 'no', label: 'No'}
+      - {value: 'yes', label: 'Yes, by marriage, divorce, or a court order'}
+
+plan:
+
+  - step: under-18
+    when: {under18: ['yes']}
+    stop_after: true
+
+  - step: unclear-birthplace
+    when: {born_ohio: [unsure], have_birth_cert: ['no']}
+    stop_after: true
+
+  - step: mailing-address
+    when: {mail: ['no']}
+
+  - step: birth-cert-ohio
+    when: {born_ohio: ['yes'], have_birth_cert: ['no']}
+
+  - step: birth-cert-other-state
+    when: {born_ohio: ['no', unsure], have_birth_cert: ['no']}
+
+  - step: social-security-card
+    when: {ssn: ['no', number_only]}
+
+  - step: name-change-papers
+    when: {name_changed: ['yes']}
+
+  - step: fee-help
+    when: {have_birth_cert: ['no']}
+
+  - step: address-proof
+
+  - step: state-id

@@ -1,0 +1,25 @@
+id: unclear-birthplace
+title: When you are not sure where you were born
+plain_summary: >
+  This one cannot be solved from a web page.
+  Finding a record with no birth state takes a person who knows the system.
+  We would rather say so than send you on a trip that fails.
+time_estimate: Not known. Start with one call today.
+bring: []
+what_to_say: >
+  I am not sure what state I was born in. I need help finding my record.
+where:
+  - faith-mission
+  - homeless-hotline
+steps_detail:
+  - Call the Homeless Hotline and ask for a case manager.
+  - Bring anything with an old address, an old school, or family names on it.
+next_steps: []
+referral: true
+provenance:
+  source_url: https://www.csb.org/
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    An honest dead end, on purpose. Do not invent steps here.

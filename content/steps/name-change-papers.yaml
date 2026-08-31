@@ -1,0 +1,27 @@
+id: name-change-papers
+title: Show how your name changed
+plain_summary: >
+  Your birth record shows the name you were given at birth.
+  If you go by another name now, you need the paper that changed it.
+  Bring one paper for each change.
+time_estimate: Depends on which court holds the record.
+bring:
+  - id: name-change-papers
+    required: true
+    note: A marriage licence, a divorce decree, or a court order.
+what_to_say: >
+  I need a certified copy of my name change order.
+where: []
+steps_detail:
+  - Find out which court signed the order and call that clerk.
+  - Ask for a certified copy. Ask the price.
+  - If your name changed twice, you need both papers.
+next_steps: [state-id]
+provenance:
+  source_url: https://dam.assets.ohio.gov/image/upload/publicsafety.ohio.gov/bmv2430.pdf
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    This page describes paperwork only. It gives no advice on gender marker
+    changes, custody, or any other legal question. Route those to legal aid.

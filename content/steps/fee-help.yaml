@@ -1,0 +1,25 @@
+id: fee-help
+title: Ask about help with the fees
+plain_summary: >
+  Some places pay these fees for people who cannot.
+  There is no single program for it, so you have to ask.
+  Ask before you give up on a trip you cannot pay for.
+time_estimate: One talk with a case manager.
+bring: []
+what_to_say: >
+  I cannot pay for my birth certificate. Does anything here cover that?
+where:
+  - faith-mission
+  - star-house
+steps_detail:
+  - Ask a shelter case manager first. They know what is funded this year.
+  - Ask the health office if they have a waiver. Write down the answer.
+next_steps: [state-id]
+provenance:
+  source_url: https://www.csb.org/
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    Phase 0 must find out which Franklin County programs actually pay these
+    fees this year. Until that is known, this step only says to ask.

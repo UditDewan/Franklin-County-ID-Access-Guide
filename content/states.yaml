@@ -1,0 +1,53 @@
+# Out-of-state birth records.
+#
+# We deliberately publish no fees here. Every state sets its own, and a wrong
+# number sends someone across town with the wrong money. Each entry points at
+# the federal directory page for that state, which carries the current office,
+# address, and fee. The list of five states is provisional: replace it with the
+# origin states shelters actually report during Phase 0.
+
+directory:
+  name: Where to Write for Vital Records
+  publisher: National Center for Health Statistics
+  url: https://www.cdc.gov/nchs/w2w/index.htm
+  plain_note: >
+    This federal page lists the records office for every state.
+    Use it for any state that is not on the short list below.
+  provenance:
+    source_url: https://www.cdc.gov/nchs/w2w/index.htm
+    verified_on: 2026-08-30
+    verified_by: desk check, project team
+    confidence: desk
+
+states:
+  - id: west-virginia
+    name: West Virginia
+    url: https://www.cdc.gov/nchs/w2w/west_virginia.htm
+    provenance: &w2w
+      source_url: https://www.cdc.gov/nchs/w2w/index.htm
+      verified_on: 2026-08-30
+      verified_by: desk check, project team
+      confidence: desk
+      note: >
+        Provisional list. No fees published on purpose. A person must open each
+        state page and confirm the office is still the right one.
+
+  - id: kentucky
+    name: Kentucky
+    url: https://www.cdc.gov/nchs/w2w/kentucky.htm
+    provenance: *w2w
+
+  - id: michigan
+    name: Michigan
+    url: https://www.cdc.gov/nchs/w2w/michigan.htm
+    provenance: *w2w
+
+  - id: georgia
+    name: Georgia
+    url: https://www.cdc.gov/nchs/w2w/georgia.htm
+    provenance: *w2w
+
+  - id: tennessee
+    name: Tennessee
+    url: https://www.cdc.gov/nchs/w2w/tennessee.htm
+    provenance: *w2w

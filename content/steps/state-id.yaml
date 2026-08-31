@@ -1,0 +1,50 @@
+id: state-id
+title: Apply for your Ohio ID card
+plain_summary: >
+  Bring your papers to any BMV office. There are two kinds of card.
+  The plain card needs one address paper. The gold star card needs two.
+  Ask for the plain card if two papers are out of reach right now.
+time_estimate: One visit, often under an hour if you have everything.
+bring:
+  - id: birth-certificate
+    required: true
+    note: The certified copy. This proves your name and birth date.
+  - id: social-security-card
+    required: true
+    note: Or a pay stub or tax form showing your whole number.
+  - id: ssa-document
+    show_as: Papers that show your address
+    required: true
+    note: >
+      One for a plain card. Two for a gold star card.
+      The list of what counts is on the step before this one.
+what_to_say: >
+  I am applying for a state ID card. Here are my papers.
+where:
+  - bmv-deputy-registrar
+cost:
+  amount_usd: 0
+  notes: >
+    Ohio stopped charging people 17 and over who have no driver licence.
+    Ask when you get there. Bring a little money in case.
+  provenance:
+    source_url: https://www.bmv.ohio.gov/doc-fees.aspx
+    verified_on: 2026-08-30
+    verified_by: desk check, project team
+    confidence: desk
+steps_detail:
+  - Use the state locator to pick an office. Call and check the hours.
+  - Bring every paper you have, even ones you think they will not need.
+  - If they turn you away, ask which paper was missing and write it down.
+  - Then try another office. Offices do not all work the same way.
+next_steps: []
+terminal: true
+provenance:
+  source_url: https://www.bmv.ohio.gov/dl-id-card.aspx
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    Two sources say the card is free for people 17 and over with no driver
+    licence. The fee page still lists dollar amounts beside a note about free
+    issuance. Confirm at a counter before this is published.

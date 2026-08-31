@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting an ID in Franklin County: the one page version</title>
+<style>
+{{ css }}
+
+/* This sheet exists to be handed out on paper, so paper comes first. */
+body { font-size: 11pt; padding: 0; }
+.sheet {
+  max-width: 7.1in;
+  margin: 0 auto;
+  padding: .35in;
+}
+.sheet h1 { font-size: 17pt; margin: 0 0 .1in; }
+.sheet h2 { font-size: 12pt; margin: .16in 0 .04in; border-bottom: 1px solid var(--line); }
+.sheet p, .sheet li { margin: .04in 0; font-size: 10.5pt; line-height: 1.35; }
+.sheet ul, .sheet ol { padding-left: .22in; margin: .04in 0; }
+.cols { display: flex; gap: .3in; }
+.cols > div { flex: 1; }
+.tag { font-size: 9.5pt; color: var(--quiet); }
+.draft {
+  border: 2px solid var(--stop);
+  color: var(--stop);
+  padding: .06in .1in;
+  margin: .08in 0;
+  font-size: 10pt;
+}
+@page { size: letter portrait; margin: .4in; }
+@media print {
+  .sheet { padding: 0; max-width: none; }
+  .noprint { display: none; }
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+<h1>Getting an ID in Franklin County</h1>
+<p class="tag">
+  For people with no fixed address. Full guide, with your own list of steps:
+  <b>{{ site_url }}</b>
+</p>
+
+{% if draft %}
+<div class="draft">
+  <b>Draft.</b> {{ unconfirmed }} of {{ fact_count }} facts still need a phone
+  call. Do not hand this out until that is done.
+</div>
+{% endif %}
+
+<h2>The order that works</h2>
+<ol>
+  {% for step in sheet_steps %}
+  <li><b>{{ step.title }}.</b> {{ step.first_line }}</li>
+  {% endfor %}
+</ol>
+<p class="tag">
+  Not every step applies to everyone. The full guide asks seven questions and
+  gives a person only the steps they need.
+</p>
+
+<div class="cols">
+<div>
+<h2>Papers the BMV takes for an address</h2>
+<ul>
+  {% for doc in address_documents %}<li>{{ doc.plain_name }}</li>{% endfor %}
+</ul>
+<p class="tag">
+  A shelter letter is <b>not</b> on the BMV list, and a friend cannot sign for you.
+  Get one of the papers above mailed to you instead.
+</p>
+</div>
+<div>
+<h2>What to say at the counter</h2>
+<ul>
+  {% for step in key_steps %}
+  <li><b>{{ step.short }}:</b> &ldquo;{{ step.what_to_say }}&rdquo;</li>
+  {% endfor %}
+</ul>
+</div>
+</div>
+
+<h2>Where to go</h2>
+{% for place in places %}
+<p>
+  <b>{{ place.name }}</b> &mdash; {{ place.address }}. {{ place.phone }}.
+  {{ place.hours }}
+</p>
+{% endfor %}
+
+<h2>If you get turned away</h2>
+<p>
+  Ask which paper was missing. Write down the date, the office, and who you
+  spoke to. Then try a different office. Offices do not all work the same way,
+  and that note is what lets a case manager push back.
+</p>
+
+<p class="tag">
+  Not legal advice. Fees and hours change without notice, so call first.
+  Facts last checked {{ newest_check }}. Oldest fact on this sheet: {{ oldest_check }}.
+  Printed from {{ site_url }}. Built {{ build_date }}.
+</p>
+
+</main>
+</body>
+</html>

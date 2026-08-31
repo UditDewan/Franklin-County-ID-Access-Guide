@@ -1,0 +1,32 @@
+id: social-security-card
+title: Replace your Social Security card
+plain_summary: >
+  A new card costs nothing. You still have to prove who you are to get one.
+  A birth certificate usually does that. So get the birth record first.
+time_estimate: About two weeks for the card to arrive.
+bring:
+  - id: birth-certificate
+    required: true
+    note: The certified copy, not a photocopy.
+what_to_say: >
+  I need to replace my Social Security card. I do not have a photo ID.
+where:
+  - ssa-columbus
+cost:
+  amount_usd: 0
+  notes: There is no fee for a replacement card.
+  provenance:
+    source_url: https://www.ssa.gov/number-card/replace-card
+    verified_on: 2026-08-30
+    verified_by: desk check, project team
+    confidence: desk
+steps_detail:
+  - Call 800-772-1213 first. Many offices want you to book a time.
+  - Ask them to mail the card to the address you are using.
+  - While you are there, ask for a letter with your address on it.
+next_steps: [address-proof, state-id]
+provenance:
+  source_url: https://www.ssa.gov/number-card/replace-card
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk

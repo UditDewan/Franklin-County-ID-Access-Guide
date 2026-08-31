@@ -1,0 +1,37 @@
+id: address-proof
+title: Get papers that show your address
+plain_summary: >
+  This is the hard part for most people. A shelter letter is not on the
+  BMV list. What works is mail that a bank or a state office sends you.
+  Pick two from the list and have them mailed to your address.
+time_estimate: One to three weeks, because the mail has to come.
+bring: []
+what_to_say: >
+  Can you mail me a letter with my name and address on it?
+where:
+  - ssa-columbus
+steps_detail:
+  - Ask Social Security to mail you a benefit letter or statement.
+  - If you get food or medical benefits, ask for a printed benefit letter.
+  - If you are on probation or parole, ask your officer for your papers.
+  - A pay stub from the last year works if it shows your address.
+  - Two bills from two different companies also work.
+  - Once the BMV mails you anything, keep it. It counts next time.
+cost:
+  amount_usd: 0
+  notes: These letters are free. Getting them takes time, not money.
+  provenance:
+    source_url: https://dam.assets.ohio.gov/image/upload/publicsafety.ohio.gov/bmv2430.pdf
+    verified_on: 2026-08-30
+    verified_by: desk check, project team
+    confidence: desk
+next_steps: [state-id]
+provenance:
+  source_url: https://dam.assets.ohio.gov/image/upload/publicsafety.ohio.gov/bmv2430.pdf
+  verified_on: 2026-08-30
+  verified_by: desk check, project team
+  confidence: desk
+  note: >
+    BMV form 2430 lists every accepted paper. No shelter letter appears on it.
+    The certified statement form covers only a parent, a spouse, or a nursing
+    home. Confirm this at two deputy registrars before publishing.

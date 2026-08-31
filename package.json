@@ -1,0 +1,8 @@
+{
+  "name": "franklin-county-id-access-guide",
+  "private": true,
+  "description": "Test-only. The published site has no JavaScript dependencies at all.",
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}

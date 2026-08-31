@@ -14,10 +14,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      # The parity test runs the browser's copy of the rules against Python's.
+      # The parity and DOM tests need node. jsdom sets a minimum Node version in
+      # its engines field, so this has to stay at or above it: on Node 20 the
+      # install succeeds and then fails at require time.
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - run: pip install -r requirements.txt
 

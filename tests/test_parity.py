@@ -14,6 +14,7 @@ import subprocess
 
 import pytest
 
+from src import build
 from src import content as content_mod
 
 NODE = shutil.which("node")
@@ -49,10 +50,17 @@ def test_javascript_and_python_agree_on_every_answer_set(repo, tmp_path):
     assert actual == expected
 
 
-@pytest.mark.skipif(NODE is None, reason="node is not installed")
-def test_the_built_page_carries_the_same_rules(repo):
-    """The page embeds its own copy of the plan. It must match the source."""
-    built = (repo / "public" / "index.html").read_text(encoding="utf-8")
+def test_the_built_page_carries_the_same_rules(repo, tmp_path, today):
+    """The page embeds its own copy of the plan. It must match the source.
+
+    This builds its own copy. Reading the repository's public/ made the test
+    depend on somebody having run the build first, which is true on a laptop
+    and false on a clean checkout.
+    """
+    for name in ("content", "templates", "static"):
+        shutil.copytree(repo / name, tmp_path / name)
+    build.build(root=tmp_path, today=today)
+    built = (tmp_path / "public" / "index.html").read_text(encoding="utf-8")
     start = built.index('id="tree-data">') + len('id="tree-data">')
     end = built.index("</script>", start)
     embedded = json.loads(built[start:end])

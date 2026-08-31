@@ -5,6 +5,7 @@ Needs node with jsdom available. Skipped when it is not installed, so a plain
 """
 
 import json
+import os
 import shutil
 import subprocess
 import textwrap
@@ -61,15 +62,41 @@ DRIVER = textwrap.dedent(
 
 
 def jsdom_available():
+    """Actually load jsdom, do not just find it on disk.
+
+    An install can sit in node_modules and still refuse to run: jsdom states a
+    minimum Node version, and npm installs it anyway on an older one. Resolving
+    the path succeeded there, so these tests ran and failed instead of skipping.
+    """
     if NODE is None:
         return False
-    probe = subprocess.run(
-        [NODE, "-e", "require.resolve('jsdom')"], capture_output=True, text=True
-    )
+    probe = subprocess.run([NODE, "-e", "require('jsdom')"], capture_output=True, text=True)
     return probe.returncode == 0
 
 
-needs_jsdom = pytest.mark.skipif(not jsdom_available(), reason="node with jsdom is not installed")
+HAVE_JSDOM = jsdom_available()
+
+# On a laptop without node these tests skip. In CI they must run, or the page
+# would be shipping untested.
+if not HAVE_JSDOM and os.environ.get("CI"):
+    raise RuntimeError(
+        "node with a working jsdom is required in CI. Run `npm install` and check "
+        "the Node version against the engines field in node_modules/jsdom/package.json."
+    )
+
+needs_jsdom = pytest.mark.skipif(not HAVE_JSDOM, reason="node with a working jsdom is not installed")
+
+
+def run_node(script, *args):
+    """Run a node script, and put its stderr in the failure message."""
+    result = subprocess.run(
+        [NODE, "-e", script, "--", *[str(a) for a in args]], capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        raise AssertionError(
+            f"node exited {result.returncode}\n--- stderr ---\n{result.stderr.strip()}"
+        )
+    return json.loads(result.stdout)
 
 
 @pytest.fixture(scope="module")
@@ -82,13 +109,7 @@ def built(tmp_path_factory, repo, today):
 
 
 def drive(page, picks):
-    result = subprocess.run(
-        [NODE, "-e", DRIVER, "--", str(page), json.dumps(picks)],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    return json.loads(result.stdout)
+    return run_node(DRIVER, page, json.dumps(picks))
 
 
 @needs_jsdom
@@ -169,10 +190,7 @@ BREAKER = textwrap.dedent(
 @needs_jsdom
 def test_a_broken_script_leaves_a_readable_page(built):
     """If the flow throws, the reader must keep the plain list, not a blank page."""
-    result = subprocess.run(
-        [NODE, "-e", BREAKER, "--", str(built)], capture_output=True, text=True, check=True
-    )
-    out = json.loads(result.stdout)
+    out = run_node(BREAKER, built)
     assert out["toolHidden"] is True
     assert out["fallbackVisible"] is True
     assert out["readableCards"] == 10, "every step must stay readable when the script dies"
